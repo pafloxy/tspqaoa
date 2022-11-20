@@ -506,6 +506,8 @@ def get_tsp_expectation_value(G, pen):
     aersim = AerSimulator(device="CPU", method="matrix_product_state")
     
     def execute_circ(angles):
+        print('angles :', angles) ##checkflag
+
         n = len(angles)
         assert n%2 == 0
         beta = angles[0:int(n/2)]
