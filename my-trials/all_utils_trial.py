@@ -460,7 +460,7 @@ def get_tsp_cost(s, G, pen):
     else:
         return pen
 
-
+from tqdm import tqdm
 def compute_tsp_cost_expectation(counts, G, pen):
     
     """
@@ -481,7 +481,7 @@ def compute_tsp_cost_expectation(counts, G, pen):
     
     avg = 0
     sum_count = 0
-    for bitstring, count in counts.items():
+    for bitstring, count in tqdm( counts.items() ):
         
         obj = get_tsp_cost(bitstring, G, pen)
         avg += obj * count
