@@ -501,7 +501,7 @@ def get_tsp_expectation_value(G, pen):
     """
     
     #backend = Aer.get_backend('qasm_simulator')
-    aersim = AerSimulator(device="CPU")
+    aersim = AerSimulator(device="CPU", method="matrix_product_state")
     
     def execute_circ(angles):
         n = len(angles)
