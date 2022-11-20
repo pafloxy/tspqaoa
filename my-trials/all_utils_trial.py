@@ -524,9 +524,7 @@ def get_tsp_expectation_value(G, pen):
 
 ######################## from graph_utils.py ##################
 # enrichment and operations on graphs
-
 from itertools import count as itcount
-
 import networkx as nx
 
 
