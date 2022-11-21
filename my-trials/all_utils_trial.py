@@ -489,7 +489,7 @@ def compute_tsp_cost_expectation(counts, G, pen):
         
     return avg/sum_count
 
-
+import time 
 def get_tsp_expectation_value(G, pen):
     
     """
@@ -505,7 +505,9 @@ def get_tsp_expectation_value(G, pen):
     #backend = Aer.get_backend('qasm_simulator')
     aersim = AerSimulator(device="CPU", method="matrix_product_state")
     
-    def execute_circ(angles):
+    
+
+    def execute_circ(angles, backend= aersim):
         print('angles :', angles) ##checkflag
 
         n = len(angles)
@@ -515,7 +517,12 @@ def get_tsp_expectation_value(G, pen):
         qc = get_tsp_qaoa_circuit(G, beta, gamma)
         qc.measure_all()
         #counts = backend.run(qc).result().get_counts()
-        counts = execute(qc, aersim).result().get_counts()
+        
+        print('executing on :', backend)
+        t_i = time.process_time()
+        counts = execute(qc, backend).result().get_counts()
+        t_f = time.process_time()
+        print('exec-time :', t_f-t_i)
         
         return compute_tsp_cost_expectation(counts, G, pen)
     
